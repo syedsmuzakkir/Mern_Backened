@@ -10,6 +10,17 @@ const cors = require('cors');
 app.use(cors());
 
 
+const cron = require('node-cron');
+
+// Define your task (this is a sample task)
+const task = () => {
+    console.log('Running cron job...');
+    // Place your logic here that you want to run continuously
+};
+
+// Schedule the task to run every minute
+cron.schedule('* * * * *', task);
+
 require("dotenv").config();
 cloudinary.config({ 
     cloud_name: process.env.CLOUD_NAME,
@@ -17,7 +28,7 @@ cloudinary.config({
     api_secret: process.env.API_SECRET
 });
 
-// Configure Multer to handle multipart/form-data
+// Configure Multer to handle multipart/form-data  
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
       cb(null, './uploads');
