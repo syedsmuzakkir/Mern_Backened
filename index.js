@@ -112,6 +112,7 @@ async (req, res) => {
     }
 });
 
+
 // GET API endpoint to fetch all products
 app.get('/products', async (req, res) => {
     try {
@@ -122,6 +123,15 @@ app.get('/products', async (req, res) => {
         res.status(500).json({ error: 'Error fetching products' });
     }
 });
+
+app.get('/keepalive', async(req, res)=>{
+        
+    const run = 'server is runnig'
+     res.json(
+         run
+     )
+})
+
 
 let port = process.env.PORT || 5000;
 app.listen(port, () => {
